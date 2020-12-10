@@ -164,5 +164,5 @@ function sendCreateOrgEventToAzureAppInsight(string orgName, string? clientIP) {
 }
 
 public function main() {
-    var azAppInsightEvent = start sendCreateOrgEventToAzureAppInsight("Parkavi", "123-123-123-123");
+    var azAppInsightEvent = sendCreateOrgEventToAzureAppInsight("Parkavi", "123-123-123-123");
 }
