@@ -15,12 +15,17 @@
 // under the License.
 
 import ballerina/io;
-import ballerina/config;
+//import ballerina/config;
 import ballerina/http;
 import ballerina/log;
 import ballerina/time;
 
-boolean azureAppInsightsEnabled = config:getAsBoolean("AZURE_APP_INSIGHTS_ENABLE", false);
+boolean azureAppInsightsEnabled = true;
+
+public function main() {
+    var azAppInsightEvent = sendCreateOrgEventToAzureAppInsight("Parkavi", "123-123-123-123");
+    io:println("into main method!!!!!!");
+}
 
 # Azure insight event publishing connector client endpoint.
 #
@@ -165,9 +170,4 @@ function sendCreateOrgEventToAzureAppInsight(string orgName, string? clientIP) {
         log:printDebug("azure application insights event publishing is disabled. " +
         "set AZURE_APP_INSIGHTS_ENABLE to \"true\". current value: " + azureAppInsightsEnabled.toString());
     }
-}
-
-public function main() {
-    var azAppInsightEvent = sendCreateOrgEventToAzureAppInsight("Parkavi", "123-123-123-123");
-    io:println("into main method!!!!!!");
 }
