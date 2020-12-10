@@ -14,6 +14,7 @@
 // specific language governing permissions and limitations
 // under the License.
 
+import ballerina/io;
 import ballerina/config;
 import ballerina/http;
 import ballerina/log;
@@ -153,8 +154,9 @@ function sendCreateOrgEventToAzureAppInsight(string orgName, string? clientIP) {
 
         EventResult|ClientError|EventError publishResults = appInsightsClient->trackEvent(createOrgEvent);
         if (publishResults is EventResult) {
-            log:printDebug("event type org creation sent to azure application insights successfully: " + orgName);
+            log:printInfo("event type org creation sent to azure application insights successfully: " + orgName);
         } else {
+            io:println("*****");
             log:printError("error occurred publishing event", err = publishResults);
         }
     } else {
