@@ -154,12 +154,14 @@ function sendCreateOrgEventToAzureAppInsight(string orgName, string? clientIP) {
 
         EventResult|ClientError|EventError publishResults = appInsightsClient->trackEvent(createOrgEvent);
         if (publishResults is EventResult) {
+            io:println("######");
             log:printInfo("event type org creation sent to azure application insights successfully: " + orgName);
         } else {
             io:println("*****");
             log:printError("error occurred publishing event", err = publishResults);
         }
     } else {
+        io:println("%%%%%%%");
         log:printDebug("azure application insights event publishing is disabled. " +
         "set AZURE_APP_INSIGHTS_ENABLE to \"true\". current value: " + azureAppInsightsEnabled.toString());
     }
@@ -167,4 +169,5 @@ function sendCreateOrgEventToAzureAppInsight(string orgName, string? clientIP) {
 
 public function main() {
     var azAppInsightEvent = sendCreateOrgEventToAzureAppInsight("Parkavi", "123-123-123-123");
+    io:println("into main method!!!!!!");
 }
